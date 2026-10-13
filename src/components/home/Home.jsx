@@ -1,10 +1,10 @@
-import Services from './components/services/Services'
-import StatsCounter from './components/stats-counter/StatsCounter'
-import PopularDestinations from './components/popular-destinations/PopularDestinations'
-import Testimonials from './components/testimonials/Testimonias'
-import SpecialOffers from './components/special-offers/SpecialOffers'
-import TourVideo from './components/tour-video/TourVideo'
-import Contacts from './components/Contacts'
+import Services from '../services/Services'
+import StatsCounter from '../stats-counter/StatsCounter'
+import PopularDestinations from '../popular-destinations/PopularDestinations'
+import Testimonials from '../testimonials/Testimonias'
+import SpecialOffers from '../special-offers/SpecialOffers'
+import TourVideo from '../tour-video/TourVideo'
+import Contacts from '../contacts/Contacts'
 
 
 export default function Home() {
