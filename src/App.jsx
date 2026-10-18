@@ -9,6 +9,8 @@ import Login from './components/login/Login'
 import Register from './components/register/Register'
 import { Route, Routes } from 'react-router-dom'
 import { supabase } from './services/supabaseClient'
+import TourDetails from './components/tour-details/TourDetails'
+import CreateTour from './components/create-tour/CreateTour'
 
 const NotFound = () => <div className="py-5 text-center mt-5"><h1>404 - Page Not Found</h1></div>;
 
@@ -30,11 +32,13 @@ function App() {
   return (<>
 
 
-    <Header user={user}/>
+    <Header user={user} />
     <main>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/tours' element={<Catalog />} />
+        <Route path='/tours/:id' element={<TourDetails />} />
+        <Route path='/create-tour' element={<CreateTour/>}/>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/*' element={<NotFound />} />

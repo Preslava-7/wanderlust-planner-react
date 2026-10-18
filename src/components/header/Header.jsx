@@ -46,6 +46,9 @@ export default function Header({ user }) {
                             </li>
                             {user ? (
                                 <>
+                                <li>
+                                    <Link to="/create-tour">Add Tour</Link>
+                                </li>
                                     <li className="text-white px-2 my-auto">
                                         <small>{user.email}</small>
                                     </li>

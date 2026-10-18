@@ -42,6 +42,7 @@ export default function Catalog() {
             tours.map((tour) => (
               <TourCard
                 key={tour.id}
+                id={tour.id}
                 title={tour.title}
                 destination={tour.destination}
                 price={tour.price}
