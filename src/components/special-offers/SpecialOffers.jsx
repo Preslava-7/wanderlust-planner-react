@@ -47,7 +47,7 @@ export default function SpecialOffers() {
                 title={offer.title}
                 destination={offer.destination}
                 price={offer.price}
-                imageUrl={offer.image_url} 
+                image_url={offer.image_url} 
               />
             ))
           ) : (

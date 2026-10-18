@@ -45,7 +45,7 @@ export default function Catalog() {
                 title={tour.title}
                 destination={tour.destination}
                 price={tour.price}
-                imageUrl={tour.image_url}
+                image_url={tour.image_url}
               />
             ))
           ) : (
