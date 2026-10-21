@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabaseClient';
 
-export default function TourDetails() {
-  const { id } = useParams(); // Get the ID from the URL
+export default function TourDetails({ user }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [tour, setTour] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,6 +26,22 @@ export default function TourDetails() {
 
     fetchTourDetails();
   }, [id]);
+
+  const handleDelete = async () => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this tour?');
+    if (!isConfirmed) return;
+
+    const { error } = await supabase
+      .from('tours')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      alert(`Error deleting tour: ${error.message}`);
+    } else {
+      navigate('/tours');
+    }
+  };
 
   if (isLoading) {
     return (
@@ -48,16 +65,16 @@ export default function TourDetails() {
       <div className="container">
         <div className="row">
           <div className="col-lg-7 mb-4">
-            <img 
-              src={tour.image_url} 
-              alt={tour.title} 
-              className="img-fluid rounded" 
+            <img
+              src={tour.image_url}
+              alt={tour.title}
+              className="img-fluid rounded"
             />
           </div>
           <div className="col-lg-5">
             <h2 className="section-title mb-3">{tour.title}</h2>
             <p className="text-primary font-weight-bold h3 mb-4">€{tour.price}</p>
-            
+
             <ul className="list-unstyled mb-4">
               <li className="mb-2">
                 <strong>Destination:</strong> {tour.destination}
@@ -74,6 +91,16 @@ export default function TourDetails() {
             <Link to="/tours" className="btn btn-outline-primary">
               &larr; Back to the catalog
             </Link>
+
+            {user && (
+              <button
+                onClick={handleDelete}
+                className="btn btn-danger ml-2"
+              >
+                Delete Tour
+              </button>
+            )}
+
           </div>
         </div>
       </div>
