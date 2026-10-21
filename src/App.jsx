@@ -54,7 +54,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
 
-        <Route element={<ProtectedRoute user={user} />}>
+        <Route element={<ProtectedRoute user={user} requireAdmin={true}/>}>
           <Route path="/create-tour" element={<CreateTour />} />
           <Route path="/tours/:id/edit" element={<EditTour />} />
         </Route>

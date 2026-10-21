@@ -46,9 +46,11 @@ export default function Header({ user }) {
                             </li>
                             {user ? (
                                 <>
-                                <li>
-                                    <Link to="/create-tour">Add Tour</Link>
-                                </li>
+                                    {user?.user_metadata?.role === "admin" && (
+                                        <li>
+                                            <Link to="/create-tour">Add Tour</Link>
+                                        </li>
+                                    )}
                                     <li className="text-white px-2 my-auto">
                                         <small>{user.email}</small>
                                     </li>
@@ -79,7 +81,7 @@ export default function Header({ user }) {
                             href="#"
                             className="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
                         >
-                            <span className="icon-menu" /> 
+                            <span className="icon-menu" />
                         </a>
                     </div>
                 </div>

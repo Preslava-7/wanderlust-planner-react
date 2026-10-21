@@ -92,7 +92,7 @@ export default function TourDetails({ user }) {
               &larr; Back to the catalog
             </Link>
 
-            {user && (
+            {user?.user_metadata?.role === "admin" && (
               <>
                 <Link to={`/tours/${id}/edit`} className="btn btn-warning ml-2">
                   Edit Tour
