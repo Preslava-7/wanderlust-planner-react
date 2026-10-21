@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function TourCard({ id, title, destination, price, image_url }) {
-  const src = image_url || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80';
+  const src = image_url;
   return (
     <div className="col-6 col-sm-6 col-md-6 col-lg-3 mb-4">
       <div className="media-1">
