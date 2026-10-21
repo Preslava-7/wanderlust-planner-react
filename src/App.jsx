@@ -12,6 +12,7 @@ import { supabase } from './services/supabaseClient'
 import TourDetails from './components/tour-details/TourDetails'
 import CreateTour from './components/create-tour/CreateTour'
 import ProtectedRoute from './components/common/ProtectedRoute'
+import EditTour from './components/edit-tour/EditTour'
 
 const NotFound = () => <div className="py-5 text-center mt-5"><h1>404 - Page Not Found</h1></div>;
 
@@ -49,12 +50,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/tours' element={<Catalog />} />
-        <Route path='/tours/:id' element={<TourDetails user={user}/>} />
+        <Route path='/tours/:id' element={<TourDetails user={user} />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
 
         <Route element={<ProtectedRoute user={user} />}>
           <Route path="/create-tour" element={<CreateTour />} />
+          <Route path="/tours/:id/edit" element={<EditTour />} />
         </Route>
 
         <Route path='/*' element={<NotFound />} />

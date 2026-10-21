@@ -93,12 +93,14 @@ export default function TourDetails({ user }) {
             </Link>
 
             {user && (
-              <button
-                onClick={handleDelete}
-                className="btn btn-danger ml-2"
-              >
-                Delete Tour
-              </button>
+              <>
+                <Link to={`/tours/${id}/edit`} className="btn btn-warning ml-2">
+                  Edit Tour
+                </Link>
+                <button onClick={handleDelete} className="btn btn-danger ml-2">
+                  Delete Tour
+                </button>
+              </>
             )}
 
           </div>
