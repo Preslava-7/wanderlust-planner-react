@@ -1,4 +1,39 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { supabase } from "../../services/supabaseClient";
+
 export default function SearchFilter() {
+    const [destination, setDestination] = useState("");
+    const [availableDestinations, setAvailableDestinations] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function fetchDestinations() {
+            const { data, error } = await supabase
+                .from('tours')
+                .select('destination');
+
+            if (error) {
+                console.error('Error fetching destinations:', error.message);
+            } else if (data) {
+                const unique = [...new Set(data.map(item => item.destination).filter(Boolean))];
+                setAvailableDestinations(unique);
+            }
+        }
+
+        fetchDestinations();
+    }, []);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (destination.trim()) {
+            navigate(`/tours?search=${encodeURIComponent(destination.trim())}`);
+        } else {
+            navigate('/tours');
+        }
+    }
+
     return (
         <div className="hero">
             <div className="container">
@@ -11,23 +46,22 @@ export default function SearchFilter() {
                             </h1>
                             <div className="row">
                                 <div className="col-12">
-                                    <form className="form">
+                                    <form className="form" onSubmit={handleSearch}>
                                         <div className="row mb-2">
                                             <div className="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
                                                 <select
-                                                    name=""
-                                                    id=""
+                                                    name="destination"
+                                                    id="destination"
                                                     className="form-control custom-select"
+                                                    value={destination}
+                                                    onChange={(e) => setDestination(e.target.value)}
                                                 >
-                                                    <option value="">Destination</option>
-                                                    <option value="">Peru</option>
-                                                    <option value="">Japan</option>
-                                                    <option value="">Thailand</option>
-                                                    <option value="">Brazil</option>
-                                                    <option value="">United States</option>
-                                                    <option value="">Israel</option>
-                                                    <option value="">China</option>
-                                                    <option value="">Russia</option>
+                                                   <option value="">Select Destination</option>
+                                                   {availableDestinations.map((destination, index) => (
+                                                    <option key={index} value={destination}>
+                                                        {destination}
+                                                    </option>
+                                                   ))}
                                                 </select>
                                             </div>
                                             <div className="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">

@@ -46,7 +46,9 @@ function App() {
 
 
     <Header user={user} />
+    <SearchFilter />
     <main>
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/tours' element={<Catalog />} />
@@ -54,7 +56,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
 
-        <Route element={<ProtectedRoute user={user} requireAdmin={true}/>}>
+        <Route element={<ProtectedRoute user={user} requireAdmin={true} />}>
           <Route path="/create-tour" element={<CreateTour />} />
           <Route path="/tours/:id/edit" element={<EditTour />} />
         </Route>
@@ -63,7 +65,7 @@ function App() {
       </Routes>
     </main>
 
-    <SearchFilter />
+
 
     <Footer />
   </>

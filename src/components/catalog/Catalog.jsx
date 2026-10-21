@@ -1,12 +1,24 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import TourCard from '../tour-card/TourCard';
 import { supabase } from '../../services/supabaseClient'; // Импортираме връзката с базата
 
 export default function Catalog() {
   const [tours, setTours] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [sortBy, setSortBy] = useState("default");
+
+  useEffect(() => {
+    const query = searchParams.get("search");
+    if(query !== null) {
+      setSearchTerm(query);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     async function fetchAllTours() {
