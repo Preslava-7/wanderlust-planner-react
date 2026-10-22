@@ -136,7 +136,7 @@ export default function TourDetails() {
           </div>
           <div className="col-lg-5">
             <h2>{tour.title}</h2>
-            <h4 className="text-primary mb-3">${tour.price} per person</h4>
+            <h4 className="text-primary mb-3">€{tour.price} per person</h4>
             <p className="text-muted"><strong>Destination:</strong> {tour.destination}</p>
             <p>{tour.description}</p>
 
