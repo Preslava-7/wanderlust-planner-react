@@ -45,8 +45,7 @@ function App() {
   return (<>
 
 
-    <Header user={user} />
-    <SearchFilter />
+    <Header />
     <main>
 
       <Routes>
