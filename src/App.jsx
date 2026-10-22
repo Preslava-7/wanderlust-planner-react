@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './components/header/Header'
-import SearchFilter from './components/search-filter/SearchFilter'
 import Footer from './components/footer/Footer'
 import Home from './components/home/Home'
 import Catalog from './components/catalog/Catalog'
@@ -13,6 +12,7 @@ import TourDetails from './components/tour-details/TourDetails'
 import CreateTour from './components/create-tour/CreateTour'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import EditTour from './components/edit-tour/EditTour'
+import MyBookings from './components/my-bookings/MyBookings'
 
 const NotFound = () => <div className="py-5 text-center mt-5"><h1>404 - Page Not Found</h1></div>;
 
@@ -53,9 +53,13 @@ function App() {
         <Route path='/tours' element={<Catalog />} />
         <Route path='/tours/:id' element={<TourDetails />} />
 
-        <Route element={<ProtectedRoute guestOnly={true}/>}>
+        <Route element={<ProtectedRoute guestOnly={true} />}>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/my-bookings" element={<MyBookings />} />
         </Route>
 
         <Route element={<ProtectedRoute requireAdmin={true} />}>

@@ -49,11 +49,18 @@ export default function Header() {
                             </li>
                             {user ? (
                                 <>
-                                    {user?.user_metadata?.role === "admin" && (
+                                    <li>
+                                        <Link to="/my-bookings">
+                                            {isAdmin ? 'All Bookings' : 'My Bookings'}
+                                        </Link>
+                                    </li>
+
+                                    {isAdmin && (
                                         <li>
                                             <Link to="/create-tour">Add Tour</Link>
                                         </li>
                                     )}
+
                                     <li className="text-white px-2 my-auto">
                                         <small>{user.email}</small>
                                     </li>

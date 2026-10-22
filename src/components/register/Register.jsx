@@ -4,29 +4,51 @@ import { supabase } from '../../services/supabaseClient';
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
         setError(null);
 
-        const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-        });
+        if (password !== confirmPassword) {
+      setError('Passwords do not match!');
+      return;
+    }
 
-        if (error) {
-            setError(error.message);
-        } else {
-            alert('Registration successful! Please login.');
-            navigate('/login');
-        }
-        setIsLoading(false);
-    };
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    setLoading(true);
+
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    setLoading(false);
+
+    if (signUpError) {
+      if (signUpError.message.toLowerCase().includes('already registered') || signUpError.status === 422) {
+        setError('An account with this email address already exists.');
+      } else {
+        setError(signUpError.message);
+      }
+      return;
+    }
+
+    if (data?.user && data?.user?.identities?.length === 0) {
+      setError('An account with this email address already exists.');
+      return;
+    }
+
+    navigate('/');
+  };
 
     return (
         <div className="untree_co-section">
@@ -56,7 +78,18 @@ export default function Register() {
                                     className="form-control"
                                     placeholder="Create a password (min 6 symbols)"
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)} // Записваме въведената парола
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group mb-4">
+                                <label>Confirm Password</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    placeholder="Confirm password"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                     required
                                 />
                             </div>
