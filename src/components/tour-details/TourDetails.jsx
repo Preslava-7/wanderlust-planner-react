@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabaseClient';
+import { useAuth } from '../../context/AuthContext';
 
-export default function TourDetails({ user }) {
+export default function TourDetails() {
+  const { user, isAdmin } = useAuth();
+  
   const { id } = useParams();
   const navigate = useNavigate();
   const [tour, setTour] = useState(null);

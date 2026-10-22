@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../services/supabaseClient";
+import { useAuth } from "../../context/AuthContext";
 
-export default function Header({ user }) {
+export default function Header() {
+    const { user, isAdmin } = useAuth();
+
     const [logoutError, setLogoutError] = useState("");
 
     const handleLogout = async () => {

@@ -52,11 +52,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/tours' element={<Catalog />} />
-        <Route path='/tours/:id' element={<TourDetails user={user} />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/tours/:id' element={<TourDetails />} />
 
-        <Route element={<ProtectedRoute user={user} requireAdmin={true} />}>
+        <Route element={<ProtectedRoute guestOnly={true}/>}>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+        </Route>
+
+        <Route element={<ProtectedRoute requireAdmin={true} />}>
           <Route path="/create-tour" element={<CreateTour />} />
           <Route path="/tours/:id/edit" element={<EditTour />} />
         </Route>
