@@ -140,9 +140,6 @@ export default function TourDetails() {
             <p className="text-muted"><strong>Destination:</strong> {tour.destination}</p>
             <p>{tour.description}</p>
 
-            <p className="mb-4">
-              Enjoy an unforgettable adventure in {tour.destination}! The package includes organized transportation, a professional tour guide, and accommodation at carefully selected hotels.
-            </p>
 
             <Link to="/tours" className="btn btn-outline-primary">
               &larr; Back to the catalog
@@ -214,10 +211,10 @@ export default function TourDetails() {
                 )}
 
                 {!user && (
-              <div className="alert alert-info mt-4">
-                Please <Link to="/login">login</Link> to book this tour.
-              </div>
-            )}
+                  <div className="alert alert-info mt-4">
+                    Please <Link to="/login">login</Link> to book this tour.
+                  </div>
+                )}
               </div>
             )}
 
