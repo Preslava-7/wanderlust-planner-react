@@ -31,30 +31,32 @@ export default function SpecialOffers() {
                 <div className="row justify-content-center text-center mb-5">
                     <div className="col-lg-6">
                         <h2 className="section-title text-center mb-3">
-                            Special Offers &amp; Discounts
+                            Explore our tours
                         </h2>
                     </div>
                 </div>
-                {loading ? (
-            <div className="col-12 text-center py-5">
-              <h5>Loading offers...</h5>
-            </div>
-          ) : offers.length > 0 ? (
-
-            offers.map((offer) => (
-              <TourCard
-                key={offer.id}
-                title={offer.title}
-                destination={offer.destination}
-                price={offer.price}
-                image_url={offer.image_url} 
-              />
-            ))
-          ) : (
-            <div className="col-12 text-center py-5">
-              <p>There are no available offers.</p>
-            </div>
-          )}
+                <div className="row">
+                    {loading ? (
+                        <div className="col-12 text-center py-5">
+                            <h5>Loading offers...</h5>
+                        </div>
+                    ) : offers.length > 0 ? (
+                        offers.map((offer) => (
+                            <TourCard
+                                key={offer.id}
+                                id={offer.id}
+                                title={offer.title}
+                                destination={offer.destination}
+                                price={offer.price}
+                                image_url={offer.image_url}
+                            />
+                        ))
+                    ) : (
+                        <div className="col-12 text-center py-5">
+                            <p>There are no available offers.</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
