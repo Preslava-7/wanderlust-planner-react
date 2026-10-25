@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Contacts() {
     return (
         <div className="py-5 cta-section">
@@ -11,12 +13,12 @@ export default function Contacts() {
                             Discover amazing destinations around the globe and book your dream trip in seconds.
                         </p>
                         <p className="mb-0">
-                            <a
-                                href="/tours"
+                            <Link
+                                to="/tours"
                                 className="btn btn-outline-white text-white btn-md font-weight-bold"
                             >
                                 Explore all tours
-                            </a>
+                            </Link>
                         </p>
                     </div>
                 </div>
