@@ -56,27 +56,13 @@ export default function SearchFilter() {
                                                     value={destination}
                                                     onChange={(e) => setDestination(e.target.value)}
                                                 >
-                                                   <option value="">Select Destination</option>
-                                                   {availableDestinations.map((destination, index) => (
-                                                    <option key={index} value={destination}>
-                                                        {destination}
-                                                    </option>
-                                                   ))}
+                                                    <option value="">Select Destination</option>
+                                                    {availableDestinations.map((destination, index) => (
+                                                        <option key={index} value={destination}>
+                                                            {destination}
+                                                        </option>
+                                                    ))}
                                                 </select>
-                                            </div>
-                                            <div className="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="daterange"
-                                                />
-                                            </div>
-                                            <div className="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="# of People"
-                                                />
                                             </div>
                                         </div>
                                         <div className="row align-items-center">
@@ -101,33 +87,14 @@ export default function SearchFilter() {
                         </div>
                     </div>
                     <div className="col-lg-5">
-                        <div className="slides">
-                            <img
-                                src="images/hero-slider-1.jpg"
-                                alt="Image"
-                                className="img-fluid active"
-                            />
-                            <img
-                                src="images/hero-slider-2.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                            <img
-                                src="images/hero-slider-3.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                            <img
-                                src="images/hero-slider-4.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                            <img
-                                src="images/hero-slider-5.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </div>
+
+                        <img
+                            src="https://img.magnific.com/free-photo/beautiful-girl-standing-boat-looking-mountains-ratchaprapha-dam-khao-sok-national-park-surat-thani-province-thailand_335224-849.jpg?semt=ais_hybrid&w=740&q=80"
+                            alt="Image"
+                            className="img-fluid active"
+                        />
+
+
                     </div>
                 </div>
             </div>
