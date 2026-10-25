@@ -11,7 +11,6 @@ export default function Home() {
             <SearchFilter />
             <Services />
             <PopularDestinations />
-            <SpecialOffers />
             <Contacts />
         </>
     );

@@ -5,18 +5,17 @@ export default function Contacts() {
                 <div className="row text-center">
                     <div className="col-md-12">
                         <h2 className="mb-2 text-white">
-                            Lets you Explore the Best. Contact Us Now
+                            Ready for Your Next Adventure?
                         </h2>
                         <p className="mb-4 lead text-white text-white-opacity">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi,
-                            fugit?
+                            Discover amazing destinations around the globe and book your dream trip in seconds.
                         </p>
                         <p className="mb-0">
                             <a
-                                href="booking.html"
+                                href="/tours"
                                 className="btn btn-outline-white text-white btn-md font-weight-bold"
                             >
-                                Get in touch
+                                Explore all tours
                             </a>
                         </p>
                     </div>

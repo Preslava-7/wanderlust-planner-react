@@ -1,117 +1,45 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { supabase } from "../../services/supabaseClient";
+import { Link } from "react-router-dom";
+
 export default function PopularDestinations() {
+    const [popularTours, setPopularTours] = useState([]);
+
+    useEffect(() => {
+        async function fetchPopular() {
+            const { data, error } = await supabase
+                .from('tours')
+                .select('*')
+                .limit(6); // Взема първите 6 оферти
+
+            if (!error && data) {
+                setPopularTours(data);
+            }
+        }
+        fetchPopular();
+    }, []);
+
     return (
-        <div className="untree_co-section">
-            <div className="container">
-                <div className="row text-center justify-content-center mb-5">
-                    <div className="col-lg-7">
-                        <h2 className="section-title text-center">Popular Destination</h2>
-                    </div>
-                </div>
-                <div className="owl-carousel owl-3-slider">
-                    <div className="item">
-                        <a
-                            className="media-thumb"
-                            href="images/hero-slider-1.jpg"
-                            data-fancybox="gallery"
-                        >
-                            <div className="media-text">
-                                <h3>Pragser Wildsee</h3>
-                                <span className="location">Italy</span>
+        <section className="popular-section my-5">
+            <h2 className="text-center mb-4">Popular Destinations</h2>
+            <div className="row">
+                {popularTours.map((tour) => (
+                    <div key={tour.id} className="col-md-4 mb-4">
+                        <div className="card h-100 shadow-sm">
+                            <img src={tour.image_url} className="card-img-top" alt={tour.title} style={{ height: '200px', objectFit: 'cover' }} />
+                            <div className="card-body">
+                                <span className="badge bg-secondary mb-2">{tour.destination}</span>
+                                <h5 className="card-title">{tour.title}</h5>
+                                <p className="card-text text-primary fw-bold">€{tour.price}</p>
+                                <Link to={`/tours/${tour.id}`} className="btn btn-outline-primary btn-sm">
+                                    View Details
+                                </Link>
                             </div>
-                            <img
-                                src="images/hero-slider-1.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </a>
+                        </div>
                     </div>
-                    <div className="item">
-                        <a
-                            className="media-thumb"
-                            href="images/hero-slider-2.jpg"
-                            data-fancybox="gallery"
-                        >
-                            <div className="media-text">
-                                <h3>Oia</h3>
-                                <span className="location">Greece</span>
-                            </div>
-                            <img
-                                src="images/hero-slider-2.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </a>
-                    </div>
-                    <div className="item">
-                        <a
-                            className="media-thumb"
-                            href="images/hero-slider-3.jpg"
-                            data-fancybox="gallery"
-                        >
-                            <div className="media-text">
-                                <h3>Perhentian Islands</h3>
-                                <span className="location">Malaysia</span>
-                            </div>
-                            <img
-                                src="images/hero-slider-3.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </a>
-                    </div>
-                    <div className="item">
-                        <a
-                            className="media-thumb"
-                            href="images/hero-slider-4.jpg"
-                            data-fancybox="gallery"
-                        >
-                            <div className="media-text">
-                                <h3>Rialto Bridge</h3>
-                                <span className="location">Italy</span>
-                            </div>
-                            <img
-                                src="images/hero-slider-4.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </a>
-                    </div>
-                    <div className="item">
-                        <a
-                            className="media-thumb"
-                            href="images/hero-slider-5.jpg"
-                            data-fancybox="gallery"
-                        >
-                            <div className="media-text">
-                                <h3>San Francisco, United States</h3>
-                                <span className="location">United States</span>
-                            </div>
-                            <img
-                                src="images/hero-slider-5.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </a>
-                    </div>
-                    <div className="item">
-                        <a
-                            className="media-thumb"
-                            href="images/hero-slider-1.jpg"
-                            data-fancybox="gallery"
-                        >
-                            <div className="media-text">
-                                <h3>Lake Thun</h3>
-                                <span className="location">Switzerland</span>
-                            </div>
-                            <img
-                                src="images/hero-slider-2.jpg"
-                                alt="Image"
-                                className="img-fluid"
-                            />
-                        </a>
-                    </div>
-                </div>
+                ))}
             </div>
-        </div>
-    );
+        </section>
+    )
 }
